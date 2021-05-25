@@ -26,3 +26,6 @@ Options:
   -D, --demo TEXT    Forcer une erreur par bloc  [default: 0]
   --help             Show this message and exit.
 ```
+
+## Auteur
+Jérémie Basso (60123) pour G5E
