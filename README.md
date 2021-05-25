@@ -1,6 +1,10 @@
 # Hamming code simulation
 
-Simulation du code de correction Hamming étendu
+Simulation du code de correction Hamming étendu :
+https://github.com/MrEthic/hamming-extended
+
+## Version
+Simulation dévelppé en Python 3.7
 
 ## Installation
 
@@ -12,9 +16,14 @@ pip install --editable .
 
 ## Utilisation
 
-Appeler le script :
+Appeler le script installé :
 ```bash
 hamming [OPTIONS]
+```
+Appeler le script sans installation :
+```bash
+pip install Click, numpy
+python3 hamming.py [OPTIONS]
 ```
 Options :
 ```python
