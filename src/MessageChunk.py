@@ -3,15 +3,18 @@ from functools import reduce
 
 class MessageChunk:
     def __init__(self, message: list):
+        """
+        Constructor for MessageChunk
+        Args:
+            message list: List of bite representing the chunk
+        """
         if len(message) == 11:
             self.__message = message
-            self.__bits: list = [0, 0, 0] + [message[0],] + [0,] + message[1:4] + [0, ] + message[4:]
+            self.__bits: list = [0, 0, 0] + [message[0], ] + [0, ] + message[1:4] + [0, ] + message[4:]
             self.__stable: list = self.__get_stable()
-        
+
         if len(message) == 16:
             self.__stable = message
-            #print(message)
-            #print(self.__get_ones_index(enumerate(message)))
             self.__error = reduce(lambda x, y: x ^ y, self.__get_ones_index(enumerate(self.__stable)))
 
     @property
@@ -40,9 +43,22 @@ class MessageChunk:
 
     @staticmethod
     def __get_ones_index(msg: enumerate) -> list:
+        """
+        Get index of sets bite
+        Args:
+            msg enumerate: enum of (bite, index)
+
+        Returns:
+            List of index of sets bite
+        """
         return [i for i, bit in msg if bit]
 
     def __get_stable(self) -> list:
+        """
+        Get stable version of the chunk
+        Returns:
+            Stable chunk
+        """
         stable = self.bits.copy()
         enum: enumerate = enumerate(self.bits)
         ons: list = self.__get_ones_index(enum)
@@ -55,7 +71,3 @@ class MessageChunk:
         xor: int = reduce(lambda x, y: x ^ y, stable)
         stable[0] = xor
         return stable
-
-
-# m = MessageChunk([1, 0, 0, 0, 1, 0, 1, 1, 1, 1, 1])
-# print(m)
